@@ -7,110 +7,17 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <!-- ===== NAVBAR ===== -->
-  <header class="nav">
-    <div class="container nav__inner">
-      <a href="#home" class="brand">
-        <!-- <img src="img/logo.svg" alt="Klupp" class="brand__logo"> -->
-        <span class="brand__text">Klupp</span>
-      </a>
-      <nav class="nav__links">
-        <a href="#servicios">Servicios</a>
-        <a href="#resultados">Resultados</a>
-        <a href="#metodologia">Metodología</a>
-        <a href="#contacto" class="btn btn--ghost">Contacto</a>
-      </nav>
-    </div>
-  </header>
+  <div data-include="partials/nav.html"></div>
+  <main>
+    <div data-include="partials/hero.html"></div>
+    <div data-include="partials/servicios.html"></div>
+    <div data-include="partials/resultados.html"></div>
+    <div data-include="partials/metodologia.html"></div>
+    <div data-include="partials/cta.html"></div>
+  </main>
+  <div data-include="partials/footer.html"></div>
 
-  <!-- ===== HERO ===== -->
-  <section id="home" class="section hero">
-    <div class="container">
-      <p class="eyebrow">Marketing data-driven</p>
-      <h1>Impulsamos tu crecimiento con campañas que convierten</h1>
-      <p class="lead">
-        Estrategia, anuncios y automatización. Resultados medibles, no promesas.
-      </p>
-      <div class="cta-row">
-        <a class="btn" target="_blank"
-           href="https://wa.me/5210000000000?text=Hola%20vengo%20de%20Klupp%20y%20quiero%20empezar">
-          Hablar por WhatsApp
-        </a>
-        <a class="btn btn--ghost" href="#servicios">Ver Servicios</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SERVICIOS ===== -->
-  <section id="servicios" class="section">
-    <div class="container">
-      <h2>Servicios</h2>
-      <p class="section__desc">Cobertura end-to-end para adquirir, convertir y retener clientes.</p>
-
-      <div class="grid grid--3">
-        <article class="card">
-          <h3>Paid Social & Search</h3>
-          <p>Meta, TikTok, Google Ads con testing por hipótesis y presupuesto dinámico.</p>
-        </article>
-        <article class="card">
-          <h3>Funnels & CRO</h3>
-          <p>Landings de alto desempeño, eventos, A/B testing y optimización continua.</p>
-        </article>
-        <article class="card">
-          <h3>Automatización</h3>
-          <p>Flujos en WhatsApp/Messenger, recuperación de carritos e integraciones.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== RESULTADOS ===== -->
-  <section id="resultados" class="section section--alt">
-    <div class="container">
-      <h2>Resultados</h2>
-      <div class="kpis">
-        <div class="kpi"><span class="kpi__num">4.2x</span><span class="kpi__lbl">ROAS promedio*</span></div>
-        <div class="kpi"><span class="kpi__num">-28%</span><span class="kpi__lbl">CPA</span></div>
-        <div class="kpi"><span class="kpi__num">+63%</span><span class="kpi__lbl">CVR</span></div>
-        <div class="kpi"><span class="kpi__num">+180%</span><span class="kpi__lbl">Ingresos atribuidos</span></div>
-      </div>
-      <p class="note">*Resultados agregados. Pueden variar según industria y etapa.</p>
-    </div>
-  </section>
-
-  <!-- ===== METODOLOGÍA ===== -->
-  <section id="metodologia" class="section">
-    <div class="container">
-      <h2>Metodología</h2>
-      <div class="steps">
-        <div class="step"><span class="step__n">1</span><h3>Diagnóstico</h3><p>Auditoría de cuentas, tracking y embudos.</p></div>
-        <div class="step"><span class="step__n">2</span><h3>Implementación</h3><p>Estructura de campañas, creatividades y landings.</p></div>
-        <div class="step"><span class="step__n">3</span><h3>Experimentación</h3><p>Testing continuo con aprendizaje semanal.</p></div>
-        <div class="step"><span class="step__n">4</span><h3>Escalamiento</h3><p>Asignación de presupuesto a ganadores.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACTO / CTA ===== -->
-  <section id="contacto" class="section section--cta">
-    <div class="container cta">
-      <h2>¿Listo para crecer?</h2>
-      <p>Cuéntanos tu objetivo y te enviamos un plan claro.</p>
-      <a class="btn" target="_blank"
-         href="https://wa.me/5210000000000?text=Hola%20quiero%20iniciar%20mi%20proyecto%20con%20Klupp">
-        Escribir por WhatsApp
-      </a>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <span>© <span id="y"></span> Klupp.</span>
-      <a href="#" class="muted">Aviso de privacidad</a>
-    </div>
-  </footer>
-
+  <script src="js/includes.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
