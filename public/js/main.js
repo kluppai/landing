@@ -1,13 +1,16 @@
 // año automático en el footer
-document.getElementById('y')?.append(new Date().getFullYear());
+document.addEventListener('DOMContentLoaded', () => {
+  const y = document.getElementById('y');
+  if (y) y.textContent = new Date().getFullYear();
+});
 
-// scroll suave para links internos
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', e=>{
-    const id = a.getAttribute('href');
-    if(id && id.startsWith('#') && id.length > 1){
-      e.preventDefault();
-      document.querySelector(id)?.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-  });
+// scroll suave para anchors internos
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href');
+  if (id && id.length > 1) {
+    e.preventDefault();
+    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
 });
