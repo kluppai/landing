@@ -1,10 +1,10 @@
-// año automático en el footer
+// Año automático
 document.addEventListener('DOMContentLoaded', () => {
   const y = document.getElementById('y');
   if (y) y.textContent = new Date().getFullYear();
 });
 
-// scroll suave para anchors internos
+// Scroll suave para anchors
 document.addEventListener('click', (e) => {
   const a = e.target.closest('a[href^="#"]');
   if (!a) return;
