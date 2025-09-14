@@ -1,4 +1,4 @@
-// Carga los parciales <div data-include="ruta.html">
+// Carga parciales <div data-include="ruta.html">
 (async () => {
   const nodes = document.querySelectorAll('[data-include]');
   for (const el of nodes) {
