@@ -5,7 +5,7 @@
       <!-- Izquierda: texto -->
       <div class="hero__left">
         <h1 id="hero-title" class="hero__title">
-          Marketing y automatización para escalar tus ventas.
+          Marketing y automatizaciones
         </h1>
 
         <p class="hero__subtitle">
@@ -51,7 +51,7 @@
         </p>
       </div>
 
-      <!-- Derecha: visual KPI + flujo (sin decir chatbot) -->
+      <!-- Derecha: visual KPI + flujo animado -->
       <aside class="hero__right" aria-label="Vista previa de resultados y flujo de venta">
         <div class="viz-card" role="group" aria-labelledby="viz-title">
           <h2 id="viz-title" class="sr-only">Panel de KPIs y flujo de venta</h2>
@@ -67,47 +67,36 @@
               </div>
               <div class="kpi">
                 <span class="kpi__label">CPR actual</span>
-                <span class="kpi__value kpi__value--good">$89</span>
+                <span class="kpi__value kpi__value--good" id="kpi-current">$89</span>
               </div>
               <div class="kpi">
                 <span class="kpi__label">Variación</span>
-                <span class="kpi__value kpi__value--good">−26%</span>
+                <span class="kpi__value kpi__value--good" id="kpi-variance">−26%</span>
               </div>
             </div>
 
             <div class="kpi-bars" aria-hidden="true">
               <div class="bar bar--target" style="--v:120"></div>
-              <div class="bar bar--current" style="--v:89"></div>
+              <div class="bar bar--current" id="bar-current" style="--v:40"></div>
             </div>
 
             <div class="kpi-bottom">
               <div class="kpi">
                 <span class="kpi__label">Leads</span>
-                <span class="kpi__value">+320</span>
+                <span class="kpi__value" id="kpi-leads">+0</span>
               </div>
               <div class="kpi">
                 <span class="kpi__label">ROAS</span>
-                <span class="kpi__value">3.2x</span>
+                <span class="kpi__value" id="kpi-roas">1.0x</span>
               </div>
             </div>
           </div>
 
-          <!-- Flujo de venta -->
+          <!-- Flujo de venta (animado) -->
           <div class="viz-flow" aria-label="Simulación de proceso de venta">
-            <div class="bubble bubble--sys">
-              <span class="bubble__sender">Sistema</span>
-              <p>Hola 👋 ¿Deseas agendar una cita?</p>
-              <time class="bubble__time" datetime="2025-09-13T09:00">09:00</time>
-            </div>
-            <div class="bubble bubble--user">
-              <span class="bubble__sender">Usuario</span>
-              <p>Sí, mañana por la tarde.</p>
-              <time class="bubble__time" datetime="2025-09-13T09:01">09:01</time>
-            </div>
-            <div class="bubble bubble--sys">
-              <span class="bubble__sender">Sistema</span>
-              <p>Listo. Te confirmo: jueves 4:30 pm. 📅</p>
-              <time class="bubble__time" datetime="2025-09-13T09:02">09:02</time>
+            <div class="flow-messages" id="flow-messages" aria-live="polite"></div>
+            <div class="typing typing--hidden" id="typing" aria-hidden="true">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
             </div>
           </div>
         </div>
