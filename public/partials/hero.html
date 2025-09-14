@@ -51,57 +51,106 @@
         </p>
       </div>
 
-      <!-- Derecha: visual KPI + flujo animado -->
-      <aside class="hero__right" aria-label="Vista previa de resultados y flujo de venta">
-        <div class="viz-card" role="group" aria-labelledby="viz-title">
-          <h2 id="viz-title" class="sr-only">Panel de KPIs y flujo de venta</h2>
+     <!-- Derecha: FUNNEL ANIMADO (reemplaza el aside anterior por este) -->
+<aside class="hero__right" aria-label="Embudo de conversión animado">
+  <div class="funnel-card" role="group" aria-labelledby="funnel-title">
+    <h2 id="funnel-title" class="sr-only">Embudo de conversión</h2>
 
-          <!-- KPI panel -->
-          <div class="viz-kpi" aria-describedby="kpi-desc">
-            <p id="kpi-desc" class="sr-only">Indicadores de costo por resultado, leads y ROAS.</p>
+    <!-- Headline del panel -->
+    <div class="funnel-head">
+      <div class="funnel-title">
+        <span class="dot-live" aria-hidden="true"></span>
+        Funnel en vivo (demo)
+      </div>
+      <div class="funnel-kpi">
+        <span class="lbl">ROAS</span>
+        <span class="val" id="funnel-roas">1.0x</span>
+      </div>
+    </div>
 
-            <div class="kpi-row">
-              <div class="kpi">
-                <span class="kpi__label">CPR objetivo</span>
-                <span class="kpi__value">$120</span>
-              </div>
-              <div class="kpi">
-                <span class="kpi__label">CPR actual</span>
-                <span class="kpi__value kpi__value--good" id="kpi-current">$89</span>
-              </div>
-              <div class="kpi">
-                <span class="kpi__label">Variación</span>
-                <span class="kpi__value kpi__value--good" id="kpi-variance">−26%</span>
-              </div>
-            </div>
-
-            <div class="kpi-bars" aria-hidden="true">
-              <div class="bar bar--target" style="--v:120"></div>
-              <div class="bar bar--current" id="bar-current" style="--v:40"></div>
-            </div>
-
-            <div class="kpi-bottom">
-              <div class="kpi">
-                <span class="kpi__label">Leads</span>
-                <span class="kpi__value" id="kpi-leads">+0</span>
-              </div>
-              <div class="kpi">
-                <span class="kpi__label">ROAS</span>
-                <span class="kpi__value" id="kpi-roas">1.0x</span>
-              </div>
-            </div>
+    <!-- Etapas del funnel -->
+    <ol class="funnel-steps" role="list">
+      <!-- Paso 1: Anuncios -->
+      <li class="funnel-step" data-target="12000">
+        <div class="step-row">
+          <div class="step-icon" aria-hidden="true">📣</div>
+          <div class="step-text">
+            <div class="step-title">Anuncios</div>
+            <div class="step-desc">Impresiones y clics calificados</div>
           </div>
-
-          <!-- Flujo de venta (animado) -->
-          <div class="viz-flow" aria-label="Simulación de proceso de venta">
-            <div class="flow-messages" id="flow-messages" aria-live="polite"></div>
-            <div class="typing typing--hidden" id="typing" aria-hidden="true">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            </div>
+          <div class="step-metric">
+            <span class="metric" id="metric-impr">0</span>
           </div>
         </div>
-      </aside>
+        <div class="step-bar">
+          <div class="bar-fill" style="--w: 0%"></div>
+        </div>
+      </li>
 
+      <!-- Paso 2: Clicks -->
+      <li class="funnel-step" data-target="2400">
+        <div class="step-row">
+          <div class="step-icon" aria-hidden="true">🖱️</div>
+          <div class="step-text">
+            <div class="step-title">Clicks</div>
+            <div class="step-desc">Tráfico a la landing</div>
+          </div>
+          <div class="step-metric">
+            <span class="metric" id="metric-clicks">0</span>
+          </div>
+        </div>
+        <div class="step-bar">
+          <div class="bar-fill" style="--w: 0%"></div>
+        </div>
+      </li>
+
+      <!-- Paso 3: Leads -->
+      <li class="funnel-step" data-target="320">
+        <div class="step-row">
+          <div class="step-icon" aria-hidden="true">📝</div>
+          <div class="step-text">
+            <div class="step-title">Leads</div>
+            <div class="step-desc">Contactos en WhatsApp / formulario</div>
+          </div>
+          <div class="step-metric">
+            <span class="metric" id="metric-leads">0</span>
+          </div>
+        </div>
+        <div class="step-bar">
+          <div class="bar-fill" style="--w: 0%"></div>
+        </div>
+      </li>
+
+      <!-- Paso 4: Ventas -->
+      <li class="funnel-step" data-target="96">
+        <div class="step-row">
+          <div class="step-icon" aria-hidden="true">💳</div>
+          <div class="step-text">
+            <div class="step-title">Ventas</div>
+            <div class="step-desc">Ingresos atribuidos</div>
+          </div>
+          <div class="step-metric">
+            <span class="metric" id="metric-sales">0</span>
+          </div>
+        </div>
+        <div class="step-bar">
+          <div class="bar-fill" style="--w: 0%"></div>
+        </div>
+      </li>
+    </ol>
+
+    <!-- Flujo de partículas (de etapa a etapa) -->
+    <div class="funnel-flow" aria-hidden="true">
+      <div class="flow-track">
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+      </div>
+      <div class="flow-track">
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+      </div>
+      <div class="flow-track">
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+      </div>
     </div>
+
   </div>
-</section>
+</aside>
