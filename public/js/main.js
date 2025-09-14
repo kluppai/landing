@@ -135,3 +135,75 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.4 });
   io.observe(hero);
 })();
+// ===== Animación FUNNEL (hero right) =====
+(function(){
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  const steps = Array.from(document.querySelectorAll('.funnel-step'));
+  const roasEl = document.getElementById('funnel-roas');
+  if (!steps.length || !roasEl) return;
+
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function countUp(el, target, opts={}){
+    const dur = prefersReduced ? 150 : (opts.duration || 1200);
+    const start = performance.now();
+    const from = parseInt(el.textContent.replace(/\D/g,'')) || 0;
+
+    function frame(t){
+      const p = Math.min((t - start) / dur, 1);
+      const eased = p<.5 ? 2*p*p : -1+(4-2*p)*p; // easeInOutQuad
+      const val = Math.round(from + (target - from) * eased);
+      el.textContent = val.toLocaleString('en-US');
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function animateBars(step, ratio){
+    const fill = step.querySelector('.bar-fill');
+    if (fill){
+      requestAnimationFrame(()=> fill.style.setProperty('--w', `${Math.max(6, Math.min(100, ratio*100))}%`));
+      fill.style.width = `${Math.max(6, Math.min(100, ratio*100))}%`;
+    }
+  }
+
+  function play(){
+    // Calcular ratios aproximados entre etapas
+    //  Anuncios -> Clicks -> Leads -> Ventas
+    const targets = steps.map(s => parseInt(s.dataset.target,10));
+    // ratios relativos al primer valor
+    const base = targets[0] || 1;
+    const ratios = targets.map(v => (v/base));
+
+    steps.forEach((step, i) => {
+      const metricEl = step.querySelector('.metric');
+      const target = targets[i];
+      // count-up
+      countUp(metricEl, target, { duration: 1200 + i*300 });
+      // barras
+      animateBars(step, ratios[i]);
+    });
+
+    // ROAS animado
+    (function animateROAS(){
+      const from = 1.0, to = 3.2;
+      const dur = prefersReduced ? 120 : 1400;
+      const start = performance.now();
+      function tick(t){
+        const p = Math.min((t - start)/dur, 1);
+        const eased = p<.5 ? 2*p*p : -1+(4-2*p)*p;
+        const val = from + (to-from)*eased;
+        roasEl.textContent = `${val.toFixed(1)}x`;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  }
+
+  const io = new IntersectionObserver(([e])=>{
+    if (e.isIntersecting){ play(); io.disconnect(); }
+  }, { threshold: 0.4 });
+  io.observe(hero);
+})();
