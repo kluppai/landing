@@ -315,3 +315,103 @@ a{text-decoration:none; color:inherit}
   .step-bar::before{ display:none }
   .dot-live{ animation:none }
 }
+/* ===== FUNNEL ILUSTRATIVO (columna derecha, 100% CSS) ===== */
+.wf-card{
+  background:#2A2A2A;
+  border:1px solid rgba(244,241,234,0.08);
+  border-radius:18px;
+  box-shadow:0 16px 32px rgba(0,0,0,.25);
+  padding:16px;
+  display:grid; gap:16px;
+  position:relative; overflow:hidden;
+}
+
+.wf-head{
+  display:flex; align-items:center; gap:10px;
+  font-weight:800; margin:0; color:var(--text);
+  font-size:16px;
+}
+.wf-dot{
+  width:8px; height:8px; border-radius:999px;
+  background:linear-gradient(135deg, var(--brand), var(--brand-700));
+  box-shadow:0 0 0 0 rgba(255,77,0,.55);
+  animation:wf-pulse 1.8s infinite;
+}
+@keyframes wf-pulse{
+  0%{ box-shadow:0 0 0 0 rgba(255,77,0,.55) }
+  70%{ box-shadow:0 0 0 12px rgba(255,77,0,0) }
+  100%{ box-shadow:0 0 0 0 rgba(255,77,0,0) }
+}
+
+/* Pista vertical */
+.wf-track{
+  position:absolute; left:28px; top:62px; bottom:54px; width:2px;
+  background:linear-gradient(180deg, rgba(255,77,0,.28), rgba(204,62,0,.35));
+  border-radius:2px; overflow:visible; pointer-events:none;
+}
+.wf-particle{
+  --t: 8s; /* duración total del descenso */
+  position:absolute; left:50%; width:8px; height:8px; transform:translate(-50%, -8px);
+  background: radial-gradient(circle at 30% 30%, #ffd7c4, #ff9a66 70%, #ff4d00);
+  border-radius:50%; box-shadow:0 0 8px rgba(255,77,0,.5);
+  animation:wf-fall var(--t) linear infinite;
+  opacity:.9;
+}
+.wf-particle:nth-child(2){ animation-delay: 1.3s }
+.wf-particle:nth-child(3){ animation-delay: 2.6s }
+.wf-particle:nth-child(4){ animation-delay: 3.9s }
+
+@keyframes wf-fall{
+  0%{ transform:translate(-50%, -8px) }
+  100%{ transform:translate(-50%, calc(100% + 8px)) }
+}
+
+/* Etapas */
+.wf-steps{ list-style:none; padding:0 0 0 52px; margin:0; display:grid; gap:10px }
+.wf-step{
+  background:#2f2f2f;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:10px 12px;
+  display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:flex-start;
+  position:relative;
+}
+
+/* Destello secuencial en cada etapa (resalta en orden) */
+.wf-step::after{
+  content:""; position:absolute; inset:0; border-radius:14px; pointer-events:none;
+  background: radial-gradient(120px 40px at 20% 50%, rgba(255,77,0,.12), transparent 60%);
+  opacity:0;
+  animation:wf-glow 7s infinite;
+}
+.wf-step:nth-child(1)::after{ animation-delay: .0s }
+.wf-step:nth-child(2)::after{ animation-delay: 1.0s }
+.wf-step:nth-child(3)::after{ animation-delay: 2.0s }
+.wf-step:nth-child(4)::after{ animation-delay: 3.0s }
+.wf-step:nth-child(5)::after{ animation-delay: 4.0s }
+.wf-step:nth-child(6)::after{ animation-delay: 5.0s }
+.wf-step:nth-child(7)::after{ animation-delay: 6.0s }
+
+@keyframes wf-glow{
+  0%, 90%, 100%{ opacity:0 }
+  10%{ opacity:1 }
+}
+
+.wf-icon{ font-size:18px; line-height:1; margin-top:2px }
+.wf-copy .wf-title{ font-weight:700; color:var(--text); margin-bottom:2px }
+.wf-copy .wf-desc{ color:var(--text-soft); font-size:12px; line-height:1.4 }
+
+/* Línea final */
+.wf-bottom{ display:flex; justify-content:center; }
+.wf-badge{
+  display:inline-block; padding:6px 10px; border-radius:999px;
+  background:rgba(255,77,0,.12);
+  border:1px solid rgba(255,77,0,.28);
+  color:#ffd7c4; font-size:12px;
+}
+
+/* Accesibilidad: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .wf-dot{ animation:none }
+  .wf-particle{ display:none }
+  .wf-step::after{ animation:none; opacity:0 }
+}
