@@ -212,3 +212,106 @@ a{text-decoration:none; color:inherit}
   .dot{animation:none}
   .kpi-bars .bar::after{transition:none}
 }
+/* ===== FUNNEL ANIMADO (columna derecha) ===== */
+.funnel-card{
+  background:#2A2A2A;
+  border:1px solid rgba(244,241,234,0.08);
+  border-radius:18px;
+  box-shadow:0 16px 32px rgba(0,0,0,.25);
+  padding:16px;
+  display:grid; gap:16px;
+}
+
+.funnel-head{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.funnel-title{
+  display:flex; align-items:center; gap:8px; font-weight:800; color:var(--text);
+}
+.dot-live{
+  width:8px; height:8px; border-radius:999px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-700));
+  box-shadow:0 0 0 0 rgba(255,77,0,.6);
+  animation:pulse 1.8s infinite;
+}
+@keyframes pulse{
+  0%{ box-shadow:0 0 0 0 rgba(255,77,0,.55) }
+  70%{ box-shadow:0 0 0 12px rgba(255,77,0,0) }
+  100%{ box-shadow:0 0 0 0 rgba(255,77,0,0) }
+}
+
+.funnel-kpi{
+  display:flex; align-items:baseline; gap:6px;
+  background:#2f2f2f; border:1px solid rgba(255,255,255,.06); border-radius:10px; padding:8px 10px;
+}
+.funnel-kpi .lbl{ font-size:12px; color:var(--text-soft) }
+.funnel-kpi .val{ font-size:18px; font-weight:800; color:var(--text) }
+
+.funnel-steps{ list-style:none; padding:0; margin:0; display:grid; gap:12px }
+.funnel-step{
+  background:#2f2f2f; border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:12px;
+  position:relative; overflow:hidden;
+}
+.step-row{ display:grid; grid-template-columns:34px 1fr auto; gap:12px; align-items:center }
+.step-icon{ font-size:20px }
+.step-title{ font-weight:700; color:var(--text) }
+.step-desc{ color:var(--text-soft); font-size:12px }
+.step-metric .metric{ font-weight:800; color:var(--text); font-variant-numeric:tabular-nums }
+
+.step-bar{
+  height:8px; background:#3a3a3a; border-radius:999px; margin-top:10px; overflow:hidden;
+  position:relative;
+}
+.step-bar::before{
+  /* brillo suave que pasa por la barra */
+  content:""; position:absolute; inset:0; background:
+    linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+  transform:translateX(-100%); animation:shine 2.2s infinite;
+  opacity:.35;
+}
+@keyframes shine{
+  0%{ transform:translateX(-100%) }
+  60%{ transform:translateX(100%) }
+  100%{ transform:translateX(100%) }
+}
+.bar-fill{
+  height:100%;
+  background: linear-gradient(90deg, var(--brand), var(--brand-700));
+  width:0%;
+  transition: width .7s cubic-bezier(.22,.61,.36,1);
+}
+
+.funnel-flow{ display:grid; gap:12px }
+.flow-track{
+  height:12px; position:relative; overflow:visible;
+  filter:saturate(1.05);
+}
+.flow-track::before{
+  content:""; position:absolute; left:0; right:0; top:50%; height:2px; transform:translateY(-50%);
+  background:linear-gradient(90deg, rgba(255,77,0,.2), rgba(204,62,0,.3));
+}
+.particle{
+  --d: 6s; /* duración */
+  width:8px; height:8px; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #ffd7c4, #ff9a66 70%, #ff4d00);
+  position:absolute; top:50%; transform:translate(-20px,-50%);
+  animation: flow var(--d) linear infinite;
+  box-shadow:0 0 8px rgba(255,77,0,.5);
+  opacity:.9;
+}
+.flow-track .particle:nth-child(2){ animation-delay: .8s }
+.flow-track .particle:nth-child(3){ animation-delay: 1.6s }
+
+@keyframes flow{
+  0%{ transform:translate(-20px,-50%) }
+  100%{ transform:translate(calc(100% + 20px),-50%) }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .bar-fill{ transition:none }
+  .funnel-card .particle{ display:none }
+  .step-bar::before{ display:none }
+  .dot-live{ animation:none }
+}
