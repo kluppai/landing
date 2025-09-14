@@ -1,14 +1,115 @@
-<section id="home" class="section hero">
-  <div class="container">
-    <p class="eyebrow">Auditoría express sin costo</p>
-    <h1>Marketing que convierte: anuncios, funnels y automatización</h1>
-    <p class="lead">Nos enfocamos en ventas reales, no métricas de vanidad. Hacemos crecer tu CAC y ROAS con experimentación constante.</p>
-    <div class="cta-row">
-      <a class="btn" target="_blank"
-         href="https://wa.me/52XXXXXXXXXX?text=Hola%2C%20quiero%20una%20auditor%C3%ADa%20express%20para%20mi%20negocio&utm_source=site&utm_medium=cta&utm_campaign=klupp_home">
-        Solicitar auditoría por WhatsApp
-      </a>
-      <a class="btn btn--ghost" href="#beneficios">Ver beneficios</a>
+<section id="home" class="section hero hero--split" aria-labelledby="hero-title">
+  <div class="container hero__container">
+    <div class="hero__grid">
+      <!-- Columna izquierda: texto -->
+      <div class="hero__left">
+        <h1 id="hero-title" class="hero__title">
+          Marketing y automatización para escalar tus ventas.
+        </h1>
+
+        <p class="hero__subtitle">
+          Impulsamos tu crecimiento con estrategias basadas en datos y procesos de venta inteligentes.
+        </p>
+
+        <ul class="hero__bullets" role="list" aria-label="Diferenciadores de Klupp">
+          <li class="hero__bullet">
+            <span class="hero__icon" aria-hidden="true">✓</span>
+            <span><strong>Paid Marketing:</strong> resultados medibles, no promesas.</span>
+          </li>
+          <li class="hero__bullet">
+            <span class="hero__icon" aria-hidden="true">✓</span>
+            <span><strong>Automatización de ventas:</strong> respuestas y seguimientos sin fricción.</span>
+          </li>
+          <li class="hero__bullet">
+            <span class="hero__icon" aria-hidden="true">✓</span>
+            <span><strong>Tracking avanzado:</strong> datos limpios con Pixel + CAPI.</span>
+          </li>
+        </ul>
+
+        <div class="hero__ctas">
+          <a
+            class="btn"
+            href="https://wa.me/52XXXXXXXXXX?text=Hola%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratuito%20con%20Klupp"
+            target="_blank" rel="noopener"
+            aria-label="Agendar diagnóstico con Klupp"
+            data-analytics="cta_diagnostico">
+            Agenda diagnóstico gratuito
+          </a>
+
+          <a
+            class="btn btn--ghost"
+            href="#metodologia"
+            aria-label="Ver metodología de trabajo de Klupp"
+            data-analytics="cta_metodologia">
+            Nuestra metodología
+          </a>
+        </div>
+
+        <p class="hero__social-proof" aria-live="polite">
+          +5 años de experiencia en performance marketing y automatización de ventas.
+        </p>
+      </div>
+
+      <!-- Columna derecha: visual -->
+      <aside class="hero__right" aria-label="Vista previa de resultados y flujo de venta">
+        <div class="viz-card" role="group" aria-labelledby="viz-title">
+          <h2 id="viz-title" class="sr-only">Panel de KPIs y flujo de venta</h2>
+
+          <!-- KPI panel -->
+          <div class="viz-kpi" aria-describedby="kpi-desc">
+            <p id="kpi-desc" class="sr-only">Indicadores de costo por resultado, leads y ROAS.</p>
+            <div class="kpi-row">
+              <div class="kpi">
+                <span class="kpi__label">CPR objetivo</span>
+                <span class="kpi__value">$120</span>
+              </div>
+              <div class="kpi">
+                <span class="kpi__label">CPR actual</span>
+                <span class="kpi__value kpi__value--good">$89</span>
+              </div>
+              <div class="kpi">
+                <span class="kpi__label">Variación</span>
+                <span class="kpi__value kpi__value--good">−26%</span>
+              </div>
+            </div>
+
+            <div class="kpi-bars" aria-hidden="true">
+              <div class="bar bar--target" style="--v:120"></div>
+              <div class="bar bar--current" style="--v:89"></div>
+            </div>
+
+            <div class="kpi-bottom">
+              <div class="kpi">
+                <span class="kpi__label">Leads</span>
+                <span class="kpi__value">+320</span>
+              </div>
+              <div class="kpi">
+                <span class="kpi__label">ROAS</span>
+                <span class="kpi__value">3.2x</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flujo de venta (simulación) -->
+          <div class="viz-flow" aria-label="Simulación de proceso de venta">
+            <div class="bubble bubble--sys">
+              <span class="bubble__sender">Sistema</span>
+              <p>Hola 👋 ¿Deseas agendar una cita?</p>
+              <time class="bubble__time" datetime="2025-09-13T09:00">09:00</time>
+            </div>
+            <div class="bubble bubble--user">
+              <span class="bubble__sender">Usuario</span>
+              <p>Sí, mañana por la tarde.</p>
+              <time class="bubble__time" datetime="2025-09-13T09:01">09:01</time>
+            </div>
+            <div class="bubble bubble--sys">
+              <span class="bubble__sender">Sistema</span>
+              <p>Listo. Te confirmo: jueves 4:30 pm. 📅</p>
+              <time class="bubble__time" datetime="2025-09-13T09:02">09:02</time>
+            </div>
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
