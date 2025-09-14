@@ -51,106 +51,79 @@
         </p>
       </div>
 
-     <!-- Derecha: FUNNEL ANIMADO (reemplaza el aside anterior por este) -->
-<aside class="hero__right" aria-label="Embudo de conversión animado">
-  <div class="funnel-card" role="group" aria-labelledby="funnel-title">
-    <h2 id="funnel-title" class="sr-only">Embudo de conversión</h2>
+  <!-- Derecha: FUNNEL ILUSTRATIVO (no dinámico, 100% CSS) -->
+<aside class="hero__right" aria-label="Funnel de trabajo Klupp">
+  <div class="wf-card" role="group" aria-labelledby="wf-title">
+    <h2 id="wf-title" class="wf-head">
+      <span class="wf-dot" aria-hidden="true"></span>
+      Así trabajamos: funnel de crecimiento
+    </h2>
 
-    <!-- Headline del panel -->
-    <div class="funnel-head">
-      <div class="funnel-title">
-        <span class="dot-live" aria-hidden="true"></span>
-        Funnel en vivo (demo)
-      </div>
-      <div class="funnel-kpi">
-        <span class="lbl">ROAS</span>
-        <span class="val" id="funnel-roas">1.0x</span>
-      </div>
+    <!-- Pista vertical por donde fluyen las partículas -->
+    <div class="wf-track" aria-hidden="true">
+      <!-- partículas que bajan en loop -->
+      <span class="wf-particle"></span>
+      <span class="wf-particle"></span>
+      <span class="wf-particle"></span>
+      <span class="wf-particle"></span>
     </div>
 
-    <!-- Etapas del funnel -->
-    <ol class="funnel-steps" role="list">
-      <!-- Paso 1: Anuncios -->
-      <li class="funnel-step" data-target="12000">
-        <div class="step-row">
-          <div class="step-icon" aria-hidden="true">📣</div>
-          <div class="step-text">
-            <div class="step-title">Anuncios</div>
-            <div class="step-desc">Impresiones y clics calificados</div>
-          </div>
-          <div class="step-metric">
-            <span class="metric" id="metric-impr">0</span>
-          </div>
-        </div>
-        <div class="step-bar">
-          <div class="bar-fill" style="--w: 0%"></div>
+    <!-- Etapas -->
+    <ol class="wf-steps" role="list">
+      <li class="wf-step">
+        <div class="wf-icon">🔎</div>
+        <div class="wf-copy">
+          <div class="wf-title">Diagnóstico</div>
+          <div class="wf-desc">Auditoría de cuentas, embudos y oportunidades.</div>
         </div>
       </li>
-
-      <!-- Paso 2: Clicks -->
-      <li class="funnel-step" data-target="2400">
-        <div class="step-row">
-          <div class="step-icon" aria-hidden="true">🖱️</div>
-          <div class="step-text">
-            <div class="step-title">Clicks</div>
-            <div class="step-desc">Tráfico a la landing</div>
-          </div>
-          <div class="step-metric">
-            <span class="metric" id="metric-clicks">0</span>
-          </div>
-        </div>
-        <div class="step-bar">
-          <div class="bar-fill" style="--w: 0%"></div>
+      <li class="wf-step">
+        <div class="wf-icon">📊</div>
+        <div class="wf-copy">
+          <div class="wf-title">Tracking & Data</div>
+          <div class="wf-desc">Pixel + CAPI, eventos y UTMs para atribución clara.</div>
         </div>
       </li>
-
-      <!-- Paso 3: Leads -->
-      <li class="funnel-step" data-target="320">
-        <div class="step-row">
-          <div class="step-icon" aria-hidden="true">📝</div>
-          <div class="step-text">
-            <div class="step-title">Leads</div>
-            <div class="step-desc">Contactos en WhatsApp / formulario</div>
-          </div>
-          <div class="step-metric">
-            <span class="metric" id="metric-leads">0</span>
-          </div>
-        </div>
-        <div class="step-bar">
-          <div class="bar-fill" style="--w: 0%"></div>
+      <li class="wf-step">
+        <div class="wf-icon">🎨</div>
+        <div class="wf-copy">
+          <div class="wf-title">Creatividades & Landing</div>
+          <div class="wf-desc">Mensajes y landings orientados a conversión.</div>
         </div>
       </li>
-
-      <!-- Paso 4: Ventas -->
-      <li class="funnel-step" data-target="96">
-        <div class="step-row">
-          <div class="step-icon" aria-hidden="true">💳</div>
-          <div class="step-text">
-            <div class="step-title">Ventas</div>
-            <div class="step-desc">Ingresos atribuidos</div>
-          </div>
-          <div class="step-metric">
-            <span class="metric" id="metric-sales">0</span>
-          </div>
+      <li class="wf-step">
+        <div class="wf-icon">💥</div>
+        <div class="wf-copy">
+          <div class="wf-title">Paid Media</div>
+          <div class="wf-desc">Estructura de campañas y testeo de audiencias.</div>
         </div>
-        <div class="step-bar">
-          <div class="bar-fill" style="--w: 0%"></div>
+      </li>
+      <li class="wf-step">
+        <div class="wf-icon">🤖</div>
+        <div class="wf-copy">
+          <div class="wf-title">Automatizaciones</div>
+          <div class="wf-desc">Respuestas y seguimientos sin fricción.</div>
+        </div>
+      </li>
+      <li class="wf-step">
+        <div class="wf-icon">🧪</div>
+        <div class="wf-copy">
+          <div class="wf-title">Optimización semanal</div>
+          <div class="wf-desc">Aprendizajes y mejoras continuas.</div>
+        </div>
+      </li>
+      <li class="wf-step">
+        <div class="wf-icon">📈</div>
+        <div class="wf-copy">
+          <div class="wf-title">Escalamiento</div>
+          <div class="wf-desc">Aumento de inversión en ganadores con control de CPA.</div>
         </div>
       </li>
     </ol>
 
-    <!-- Flujo de partículas (de etapa a etapa) -->
-    <div class="funnel-flow" aria-hidden="true">
-      <div class="flow-track">
-        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
-      </div>
-      <div class="flow-track">
-        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
-      </div>
-      <div class="flow-track">
-        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
-      </div>
+    <!-- Línea final tipo “resultado” -->
+    <div class="wf-bottom">
+      <span class="wf-badge">Resultado: crecimiento medible</span>
     </div>
-
   </div>
 </aside>
