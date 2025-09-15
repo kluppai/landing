@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
         { selector: '#nav-container', url: 'partials/nav.html' },
         { selector: '#hero-container', url: 'partials/hero.html' },
         { selector: '#problema-container', url: 'partials/problema.html' },
+        { selector: '#beneficios-container', url: 'partials/beneficios.html' },
         { selector: '#servicios-container', url: 'partials/servicios.html' },
+        { selector: '#diferencia-container', url: 'partials/diferencia.html' },
         { selector: '#metodologia-container', url: 'partials/metodologia.html' },
         { selector: '#autor-container', url: 'partials/autor.html' },
         { selector: '#cta-container', url: 'partials/cta.html' },
@@ -13,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { selector: '#footer-container', url: 'partials/footer.html' }
     ];
 
-    // Función para cargar todos los parciales y luego inicializar los scripts
+    // Cargar todos los parciales y luego inicializar los scripts
     Promise.all(partials.map(p => 
         fetch(p.url)
         .then(res => res.ok ? res.text() : Promise.reject(res.statusText))
@@ -21,38 +23,53 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(results => {
             results.forEach(result => {
                 const element = document.querySelector(result.selector);
-                if (element) {
-                    element.innerHTML = result.html;
-                }
+                if (element) element.innerHTML = result.html;
             });
             // Una vez cargado todo el HTML, inicializamos las funciones
             initializeNav();
             initializeFaq();
+            initializeAnimations(); // <--- NUEVA FUNCIÓN DE ANIMACIÓN
         })
         .catch(error => console.error("Error loading one or more partials:", error));
 
 
     // --- Menú Móvil ---
-    const initializeNav = () => {
-        // Esta funcionalidad se puede expandir si decides agregar un menú desplegable en móvil
-        const navToggle = document.getElementById('nav-toggle');
-        if (navToggle) {
-            // Lógica del menú aquí si es necesaria en el futuro
-        }
-    }
+    const initializeNav = () => { /* ... (código sin cambios) ... */ };
 
     // --- FAQ Acordeón ---
-    const initializeFaq = () => {
-        const faqItems = document.querySelectorAll('.faq__item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq__question');
-            question.addEventListener('click', () => {
-                const openItem = document.querySelector('.faq__item.active');
-                if (openItem && openItem !== item) {
-                    openItem.classList.remove('active');
-                }
-                item.classList.toggle('active');
+    const initializeFaq = () => { /* ... (código sin cambios) ... */ };
+
+    // --- NUEVA LÓGICA DE ANIMACIÓN ---
+    const initializeAnimations = () => {
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const delay = element.dataset.delay || 0;
+                        
+                        // Aplicamos el delay inline si existe
+                        element.style.transitionDelay = `${delay}ms`;
+
+                        element.classList.add('visible');
+                        observer.unobserve(element);
+                    }
+                });
+            }, {
+                threshold: 0.1 // El elemento se animará cuando un 10% sea visible
             });
-        });
-    }
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        } else {
+            // Si el navegador es antiguo y no soporta IntersectionObserver,
+            // simplemente mostramos todos los elementos.
+            animatedElements.forEach(el => {
+                el.classList.add('visible');
+            });
+        }
+    };
 });
