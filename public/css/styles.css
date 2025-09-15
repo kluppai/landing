@@ -18,32 +18,16 @@
 /* --- RESET --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-    font-family: var(--font-secondary);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--color-text);
-    background-color: var(--color-background);
-}
+body { font-family: var(--font-secondary); font-size: 17px; line-height: 1.7; color: var(--color-text); background-color: var(--color-background); }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-primary); color: var(--color-headlines); font-weight: 600; line-height: 1.2; }
 ul { list-style: none; }
 a { text-decoration: none; color: var(--color-accent); }
 img { max-width: 100%; height: auto; display: block; }
 
 /* --- ANIMACIONES --- */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.animate-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-/* Para aplicar delays desde el HTML: style="transition-delay: 200ms" */
-[data-delay] {
-    transition-delay: var(--delay);
-}
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+[data-delay] { transition-delay: var(--delay); }
 
 /* --- REUSABLE CLASSES --- */
 .container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
@@ -52,6 +36,7 @@ img { max-width: 100%; height: auto; display: block; }
 .section-header { margin-bottom: 4rem; }
 .section__title { font-size: 2.8rem; text-align: center; margin-bottom: 1rem; }
 .section__subtitle { font-size: 1.25rem; text-align: center; max-width: 700px; margin: 0 auto; }
+.section__title--left { text-align: left; margin-bottom: 1.5rem; }
 .button { display: inline-block; padding: 0.7rem 1.8rem; border-radius: 50px; font-weight: 500; transition: all 0.3s; font-family: var(--font-primary); border: 1.5px solid transparent; cursor: pointer; }
 .button--primary { background-color: var(--color-accent); color: var(--color-white); border-color: var(--color-accent); }
 .button--primary:hover { background-color: var(--color-hover); border-color: var(--color-hover); transform: translateY(-2px); }
@@ -71,34 +56,71 @@ img { max-width: 100%; height: auto; display: block; }
 .nav__toggle { display: none; }
 
 /* --- HERO --- */
-.hero {
-    /* AJUSTE: Valor fijo para compensar el navbar flotante y dar más aire */
-    padding-top: 160px; 
-    padding-bottom: 5rem;
-    text-align: center;
-}
+.hero { padding-top: 160px; padding-bottom: 5rem; text-align: center; }
+.hero__content { max-width: 800px; margin: 0 auto; }
+.hero__title { font-size: 3.8rem; margin-bottom: 1rem; }
+.hero__subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; }
 
-/* --- SECCIONES NUEVAS --- */
-/* Beneficios */
+/* --- FIX: Estilos para la sección Problema --- */
+.problem__container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: center; }
+.problem-card { background-color: var(--color-white); border: 1px solid var(--color-secondary); padding: 2.5rem 2rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.problem-card__title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-accent); }
+
+/* --- Beneficios --- */
 .benefits__container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.card { background-color: var(--color-white); padding: 2.5rem 2rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); text-align: center; }
+.card { background-color: var(--color-white); padding: 2.5rem 2rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
 .card__icon { font-size: 2.5rem; margin-bottom: 1rem; }
 .card__title { font-size: 1.5rem; margin-bottom: 0.5rem; }
+/* UPDATE: Alineación de texto en cards de Beneficios y Servicios */
+.benefits__container .card, .services__container .card { text-align: left; }
+.benefits__container .card .card__icon { text-align: left; }
 
-/* Diferencia */
+/* --- Servicios (La Solución) --- */
+.services__container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+/* --- Diferencia --- */
 .difference__container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 900px; margin: 0 auto; }
 .difference-card { background-color: var(--color-white); padding: 2rem; border-radius: 10px; }
 .difference-card--secondary { background-color: var(--color-headlines); color: var(--color-white); }
 .difference-card--secondary .difference-card__title { color: var(--color-white); }
 .difference-card__title { font-size: 1.5rem; margin-bottom: 1.5rem; }
 .difference-card ul { list-style-type: none; }
-.difference-card li { margin-bottom: 1rem; }
+.difference-card li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+.difference-card li::before { content: '✅'; position: absolute; left: 0; }
+.difference-card--secondary li::before { content: '❌'; }
 
-/* (El resto de los estilos de las otras secciones permanecen igual) */
-/* ... */
+/* --- FIX: Estilos para sección Metodología --- */
+.method__container { display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 700px; margin: 0 auto; }
+.method__step { display: flex; align-items: flex-start; gap: 1.5rem; text-align: left; }
+.method__number { flex-shrink: 0; width: 50px; height: 50px; background-color: var(--color-accent); color: var(--color-white); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 600; }
+.method__title { font-size: 1.5rem; margin-bottom: 0.5rem; }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-    /* ... (Estilos responsive existentes) ... */
-    .difference__container { grid-template-columns: 1fr; }
-}
+/* --- FIX: Estilos para sección Autor --- */
+.author__container { display: flex; align-items: center; gap: 3rem; }
+.author__image { flex-shrink: 0; }
+.author__image img { border-radius: 50%; width: 180px; height: 180px; object-fit: cover; background-color: var(--color-secondary); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+.author__content { flex: 1; }
+.author__content p { margin-bottom: 1rem; max-width: 600px; }
+
+/* --- CTA --- */
+.cta { background-color: var(--color-secondary); }
+.cta__container--centered { text-align: center; }
+.cta__text { font-size: 1.25rem; max-width: 700px; margin: 0 auto 2rem auto; }
+
+/* --- UPDATE: Estilos para FAQ --- */
+.faq__container { max-width: 800px; margin: 0 auto; }
+.faq__item { border-bottom: 1px solid var(--color-secondary); padding: 1.5rem 0; }
+.faq__question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.faq__question h3 { font-size: 1.25rem; font-weight: 500; }
+.faq__icon { font-size: 1.8rem; font-weight: 400; color: var(--color-accent); transition: transform 0.3s; }
+.faq__answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+.faq__answer p { padding-top: 1rem; color: var(--color-text); }
+.faq__item.active .faq__answer { max-height: 300px; }
+.faq__item.active .faq__icon { transform: rotate(45deg); }
+
+/* --- FOOTER --- */
+.footer { background-color: var(--color-headlines); color: var(--color-secondary); padding: 4rem 0; }
+.footer__container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+.footer__logo img { height: 30px; margin-bottom: 1rem; }
+.footer__social { display: flex; gap: 1.5rem; }
+.footer__social-link { color: var(--color-secondary); transition: color 0.3s;
