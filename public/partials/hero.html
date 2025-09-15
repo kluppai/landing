@@ -1,34 +1,4 @@
 <section class="hero">
-    <div class="hero-svg-background">
-        <svg viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <filter id="blur-filter">
-                    <feGaussianBlur stdDeviation="80" />
-                </filter>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color: rgba(255, 69, 0, 0.4);" />
-                    <stop offset="100%" style="stop-color: rgba(255, 195, 160, 0.5);" />
-                </linearGradient>
-                <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color: rgba(234, 230, 218, 0.8);" />
-                    <stop offset="100%" style="stop-color: rgba(245, 243, 237, 0.7);" />
-                </linearGradient>
-            </defs>
-            <g filter="url(#blur-filter)">
-                <ellipse cx="850" cy="150" rx="400" ry="250" fill="url(#grad1)">
-                    <animateTransform attributeName="transform" type="rotate" from="0 850 150" to="360 850 150" dur="25s" repeatCount="indefinite"/>
-                    <animate attributeName="cx" dur="20s" values="850;1000;850" repeatCount="indefinite" />
-                </ellipse>
-                <ellipse cx="300" cy="550" rx="350" ry="350" fill="url(#grad2)">
-                    <animateTransform attributeName="transform" type="rotate" from="0 300 550" to="-360 300 550" dur="30s" repeatCount="indefinite"/>
-                    <animate attributeName="cy" dur="22s" values="550;450;550" repeatCount="indefinite" />
-                </ellipse>
-                <ellipse cx="1200" cy="600" rx="300" ry="200" fill="url(#grad1)">
-                    <animateTransform attributeName="transform" type="translate" dur="28s" values="0 0; 50 -100; 0 0" repeatCount="indefinite"/>
-                </ellipse>
-            </g>
-        </svg>
-    </div>
     <div class="hero__content">
         <h1 class="hero__title animate-on-scroll" data-delay="100">Creamos sistemas de adquisición de clientes</h1>
         <p class="hero__subtitle animate-on-scroll" data-delay="200">Para cualquier tipo de negocio.</p>
