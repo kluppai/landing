@@ -7,13 +7,12 @@
     --color-accent: #FF4500;
     --color-hover: #D83A00;
     --color-white: #FFFFFF;
-    --color-soft-accent: #ffc3a0; /* Naranja suave para el gradiente */
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Roboto', sans-serif;
     --container-width: 1140px;
 }
 
-/* --- RESET --- */
+/* (El resto del código CSS hasta la sección de NAVBAR permanece igual) */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-secondary); font-size: 17px; line-height: 1.7; color: var(--color-text); background-color: var(--color-background); }
@@ -22,13 +21,9 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-primary); color: var(--color-he
 ul { list-style: none; }
 a { text-decoration: none; color: var(--color-accent); }
 img { max-width: 100%; height: auto; display: block; }
-
-/* --- ANIMACIONES ON-SCROLL --- */
 .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
 .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
 [data-delay] { transition-delay: var(--delay); }
-
-/* --- REUSABLE CLASSES --- */
 .container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
 .section { padding: 6rem 0; position: relative; z-index: 1; }
 .section--secondary { background-color: var(--color-secondary); }
@@ -49,38 +44,20 @@ img { max-width: 100%; height: auto; display: block; }
 .nav { height: 65px; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem; background-color: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,0.05); border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 .nav__logo img { height: 28px; }
 .nav__menu { display: flex; align-items: center; }
-.nav__list { display: flex; gap: 2rem; }
+.nav__list { display: flex; align-items: center; gap: 2rem; }
 .nav__link { color: var(--color-text); font-weight: 500; transition: color 0.3s; font-size: 16px; }
 .nav__link:hover { color: var(--color-accent); }
-.nav__button { padding: 0.4rem 1.2rem; font-size: 15px; margin-left: 2rem; }
+.nav__button--desktop { padding: 0.4rem 1.2rem; font-size: 15px; }
+.nav__button--mobile { display: none; } /* Oculto en escritorio */
+.nav__item--mobile-button { display: none; } /* Oculto en escritorio */
 .nav__toggle { display: none; }
 
-/* --- HERO CON ANIMACIÓN DE GRADIENTE --- */
-.hero {
-    padding-top: 160px;
-    padding-bottom: 5rem;
-    text-align: center;
-    position: relative;
-    color: var(--color-headlines); /* Asegura buen contraste de texto */
-    
-    /* La magia de la animación está aquí */
-    background: linear-gradient(-45deg, var(--color-background), var(--color-secondary), var(--color-soft-accent), var(--color-background));
-    background-size: 400% 400%;
-    animation: gradient-pan 15s ease infinite;
-}
-
-@keyframes gradient-pan {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
+/* (El resto del código CSS hasta la sección RESPONSIVE permanece igual) */
+.hero { padding-top: 160px; padding-bottom: 5rem; text-align: center; position: relative; overflow: hidden; background: linear-gradient(-45deg, var(--color-background), var(--color-secondary), var(--color-soft-accent), var(--color-background)); background-size: 400% 400%; animation: gradient-pan 15s ease infinite; }
+@keyframes gradient-pan { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 .hero__content { position: relative; z-index: 2; }
 .hero__title { font-size: 3.8rem; margin-bottom: 1rem; }
 .hero__subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; }
-
-/* (El resto de los estilos no ha cambiado y permanece intacto) */
-/* ... (Todos los demás estilos desde .problem__container hasta el final) ... */
 .problem__container, .benefits__container, .services__container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 .problem-card { background-color: var(--color-white); border: 1px solid var(--color-secondary); padding: 2.5rem 2rem; border-radius: 10px; text-align: center; }
 .problem-card__title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-accent); }
@@ -133,7 +110,7 @@ img { max-width: 100%; height: auto; display: block; }
 .footer__link { color: var(--color-secondary); margin-bottom: 0.5rem; display: inline-block; transition: color 0.3s; }
 .footer__link:hover { color: var(--color-white); }
 
-/* --- RESPONSIVE --- */
+/* --- ESTILOS RESPONSIVOS (CORREGIDOS) --- */
 @media (max-width: 992px) {
     .author__container { flex-direction: column; text-align: center; }
     .section__title--left { text-align: center; }
@@ -141,21 +118,58 @@ img { max-width: 100%; height: auto; display: block; }
     .footer__brand { grid-column: span 2; margin-bottom: 2rem; }
     .difference__container { grid-template-columns: 1fr; }
 }
+
 @media (max-width: 768px) {
     .nav__container { max-width: none; }
     .header { top: 0; padding: 0; border-radius: 0; background-color: rgba(245, 243, 237, 0.85); }
     .nav { border-radius: 0; box-shadow: none; border-bottom: 1px solid var(--color-secondary); height: 70px; }
     .nav__menu { align-items: stretch; }
-    .nav__list, .nav__button { display: none; }
+    .nav__list { display: none; } /* Oculta la lista en escritorio */
+    .nav__button--desktop { display: none; } /* Oculta el botón de escritorio */
     .nav__toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; z-index: 101; }
     .nav__toggle span { width: 22px; height: 2px; background-color: var(--color-headlines); transition: transform 0.3s, opacity 0.3s; }
     .nav__toggle.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav__toggle.is-active span:nth-child(2) { opacity: 0; }
     .nav__toggle.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .nav__menu { position: fixed; top: 70px; right: -100%; width: 100%; height: calc(100vh - 70px); background-color: var(--color-background); padding: 2rem; transition: right 0.4s ease-in-out; display: block; }
-    .nav__menu.show-menu { right: 0; }
-    .nav__list { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding-top: 2rem; }
+    
+    /* Menú Desplegable */
+    .nav__menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--color-background);
+        padding: 2rem;
+        transition: right 0.4s ease-in-out;
+        display: block;
+    }
+    .nav__menu.show-menu {
+        right: 0;
+    }
+    .nav__list {
+        display: flex; /* Se vuelve a mostrar dentro del menú */
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding-top: 2rem;
+    }
     .nav__link { font-size: 1.5rem; }
+    /* NUEVOS ESTILOS PARA EL BOTÓN MÓVIL */
+    .nav__item--mobile-button {
+        display: block; /* Muestra el <li> del botón */
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+    .nav__button--mobile {
+        display: inline-block; /* Muestra el <a> del botón */
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+
+    /* (El resto de los estilos responsivos no cambian) */
     .hero { padding-top: 120px; }
     .hero__title { font-size: 2.5rem; }
     .hero__subtitle { font-size: 1.1rem; }
@@ -163,6 +177,7 @@ img { max-width: 100%; height: auto; display: block; }
     .section__title { font-size: 2.2rem; }
     body { font-size: 16px; }
 }
+
 @media (max-width: 480px) {
     .footer__grid { grid-template-columns: 1fr; }
     .footer__brand { grid-column: span 1; }
