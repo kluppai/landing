@@ -7,6 +7,8 @@
     --color-accent: #FF4500;
     --color-hover: #D83A00;
     --color-white: #FFFFFF;
+    --color-soft-accent: rgba(255, 69, 0, 0.35);
+    --color-soft-secondary: rgba(234, 230, 218, 0.7);
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Roboto', sans-serif;
     --container-width: 1140px;
@@ -54,22 +56,53 @@ img { max-width: 100%; height: auto; display: block; }
 .nav__button { padding: 0.4rem 1.2rem; font-size: 15px; margin-left: 2rem; }
 .nav__toggle { display: none; }
 
-/* --- HERO CON ANIMACIÓN SVG --- */
-.hero { padding-top: 160px; padding-bottom: 5rem; text-align: center; position: relative; overflow: hidden; }
-.hero__content { position: relative; z-index: 2; }
-.hero-svg-background {
+/* --- HERO CON ANIMACIÓN CSS ROBUSTA --- */
+.hero {
+    padding-top: 160px;
+    padding-bottom: 5rem;
+    text-align: center;
+    position: relative;
+    background-color: var(--color-background);
+    overflow: hidden; /* Muy importante para contener las 'burbujas' */
+}
+.hero__content {
+    position: relative;
+    z-index: 2; /* Asegura que el contenido esté por encima de la animación */
+}
+.hero::before, .hero::after {
+    content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 1;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 1; /* Detrás del contenido */
+}
+.hero::before {
+    width: 400px;
+    height: 400px;
+    background: var(--color-soft-accent);
+    top: -10%;
+    left: -10%;
+    animation: blob-animation-1 18s infinite alternate ease-in-out;
+}
+.hero::after {
+    width: 500px;
+    height: 500px;
+    background: var(--color-soft-secondary);
+    bottom: -20%;
+    right: -15%;
+    animation: blob-animation-2 22s infinite alternate ease-in-out -5s; /* Delay negativo para desincronizar */
+}
+@keyframes blob-animation-1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(150px, 100px) scale(1.2); }
+}
+@keyframes blob-animation-2 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-100px, -80px) rotate(180deg); }
 }
 .hero__title { font-size: 3.8rem; margin-bottom: 1rem; }
 .hero__subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; }
+
 
 /* (Resto de los estilos sin cambios) */
 .problem__container, .benefits__container, .services__container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
