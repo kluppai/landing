@@ -1,14 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // --- Cargar Partials ---
+    // --- Cargar Partials (lista actualizada) ---
     const partials = [
         { selector: '#nav-container', url: 'partials/nav.html' },
         { selector: '#hero-container', url: 'partials/hero.html' },
-        { selector: '#trust-container', url: 'partials/trust.html' },
         { selector: '#problema-container', url: 'partials/problema.html' },
         { selector: '#servicios-container', url: 'partials/servicios.html' },
         { selector: '#metodologia-container', url: 'partials/metodologia.html' },
-        { selector: '#casos-container', url: 'partials/casos.html' },
         { selector: '#autor-container', url: 'partials/autor.html' },
         { selector: '#cta-container', url: 'partials/cta.html' },
         { selector: '#faq-container', url: 'partials/faq.html' },
@@ -36,41 +34,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // --- Menú Móvil ---
     const initializeNav = () => {
+        // Esta funcionalidad se puede expandir si decides agregar un menú desplegable en móvil
         const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        const navLinks = document.querySelectorAll('.nav__link');
-
-        if (navToggle && navMenu) {
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('show-menu');
-            });
+        if (navToggle) {
+            // Lógica del menú aquí si es necesaria en el futuro
         }
-
-        // Cerrar menú al hacer clic en un enlace
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navMenu.classList.contains('show-menu')) {
-                    navMenu.classList.remove('show-menu');
-                }
-            });
-        });
     }
 
     // --- FAQ Acordeón ---
     const initializeFaq = () => {
         const faqItems = document.querySelectorAll('.faq__item');
-
         faqItems.forEach(item => {
             const question = item.querySelector('.faq__question');
             question.addEventListener('click', () => {
                 const openItem = document.querySelector('.faq__item.active');
-
-                // Cierra el item que ya está abierto (si no es el actual)
                 if (openItem && openItem !== item) {
                     openItem.classList.remove('active');
                 }
-
-                // Abre o cierra el item actual
                 item.classList.toggle('active');
             });
         });
