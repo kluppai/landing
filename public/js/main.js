@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // --- Cargar Partials (lista actualizada) ---
+    // --- Cargar Partials ---
     const partials = [
         { selector: '#nav-container', url: 'partials/nav.html' },
         { selector: '#hero-container', url: 'partials/hero.html' },
@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
         { selector: '#footer-container', url: 'partials/footer.html' }
     ];
 
-    // Cargar todos los parciales y luego inicializar los scripts
     Promise.all(partials.map(p => 
         fetch(p.url)
         .then(res => res.ok ? res.text() : Promise.reject(res.statusText))
@@ -25,51 +24,70 @@ document.addEventListener("DOMContentLoaded", function() {
                 const element = document.querySelector(result.selector);
                 if (element) element.innerHTML = result.html;
             });
-            // Una vez cargado todo el HTML, inicializamos las funciones
             initializeNav();
             initializeFaq();
-            initializeAnimations(); // <--- NUEVA FUNCIÓN DE ANIMACIÓN
+            initializeAnimations();
         })
         .catch(error => console.error("Error loading one or more partials:", error));
 
+    // --- LÓGICA DEL MENÚ MÓVIL (ACTUALIZADO) ---
+    const initializeNav = () => {
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav__link');
 
-    // --- Menú Móvil ---
-    const initializeNav = () => { /* ... (código sin cambios) ... */ };
+        if (navToggle && navMenu) {
+            // Abrir/cerrar menú con el botón hamburguesa
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('show-menu');
+                navToggle.classList.toggle('is-active');
+            });
+        }
+
+        // Cerrar menú al hacer clic en un enlace
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('show-menu')) {
+                    navMenu.classList.remove('show-menu');
+                    navToggle.classList.remove('is-active');
+                }
+            });
+        });
+    }
 
     // --- FAQ Acordeón ---
-    const initializeFaq = () => { /* ... (código sin cambios) ... */ };
+    const initializeFaq = () => {
+        const faqItems = document.querySelectorAll('.faq__item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq__question');
+            question.addEventListener('click', () => {
+                const openItem = document.querySelector('.faq__item.active');
+                if (openItem && openItem !== item) {
+                    openItem.classList.remove('active');
+                }
+                item.classList.toggle('active');
+            });
+        });
+    }
 
-    // --- NUEVA LÓGICA DE ANIMACIÓN ---
+    // --- Animaciones On-Scroll ---
     const initializeAnimations = () => {
         const animatedElements = document.querySelectorAll('.animate-on-scroll');
-
         if ("IntersectionObserver" in window) {
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const element = entry.target;
                         const delay = element.dataset.delay || 0;
-                        
-                        // Aplicamos el delay inline si existe
                         element.style.transitionDelay = `${delay}ms`;
-
                         element.classList.add('visible');
                         observer.unobserve(element);
                     }
                 });
-            }, {
-                threshold: 0.1 // El elemento se animará cuando un 10% sea visible
-            });
-
-            animatedElements.forEach(el => {
-                observer.observe(el);
-            });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
         } else {
-            // Si el navegador es antiguo y no soporta IntersectionObserver,
-            // simplemente mostramos todos los elementos.
-            animatedElements.forEach(el => {
-                el.classList.add('visible');
-            });
+            animatedElements.forEach(el => el.classList.add('visible'));
         }
     };
 });
