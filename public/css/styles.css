@@ -71,10 +71,12 @@ img { max-width: 100%; height: auto; display: block; }
 .nav__toggle { display: none; }
 
 /* --- HERO --- */
-.hero { padding-top: calc(var(--header-height) + 6rem); padding-bottom: 5rem; text-align: center; }
-.hero__content { max-width: 800px; margin: 0 auto; }
-.hero__title { font-size: 3.8rem; margin-bottom: 1rem; }
-.hero__subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; }
+.hero {
+    /* AJUSTE: Valor fijo para compensar el navbar flotante y dar más aire */
+    padding-top: 160px; 
+    padding-bottom: 5rem;
+    text-align: center;
+}
 
 /* --- SECCIONES NUEVAS --- */
 /* Beneficios */
