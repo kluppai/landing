@@ -7,8 +7,6 @@
     --color-accent: #FF4500;
     --color-hover: #D83A00;
     --color-white: #FFFFFF;
-    --color-soft-accent: rgba(255, 69, 0, 0.4);
-    --color-soft-secondary: rgba(234, 230, 218, 0.6);
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Roboto', sans-serif;
     --container-width: 1140px;
@@ -18,9 +16,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-secondary); font-size: 17px; line-height: 1.7; color: var(--color-text); background-color: var(--color-background); }
-/* FIX: Evita el scroll horizontal en el body */
 body.menu-open { overflow: hidden; }
-
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-primary); color: var(--color-headlines); font-weight: 600; line-height: 1.2; }
 ul { list-style: none; }
 a { text-decoration: none; color: var(--color-accent); }
@@ -58,19 +54,24 @@ img { max-width: 100%; height: auto; display: block; }
 .nav__button { padding: 0.4rem 1.2rem; font-size: 15px; margin-left: 2rem; }
 .nav__toggle { display: none; }
 
-/* --- HERO CON ANIMACIÓN PROFESional --- */
-.hero { padding-top: 160px; padding-bottom: 5rem; text-align: center; position: relative; overflow: hidden; background-color: var(--color-background); }
+/* --- HERO CON ANIMACIÓN SVG --- */
+.hero { padding-top: 160px; padding-bottom: 5rem; text-align: center; position: relative; overflow: hidden; }
 .hero__content { position: relative; z-index: 2; }
-.hero-background { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; }
-.hero-background::before, .hero-background::after { content: ''; position: absolute; border-radius: 50%; filter: blur(100px); }
-.hero-background::before { width: 450px; height: 450px; background-color: var(--color-soft-accent); top: -150px; left: -150px; animation: move-blob-1 15s infinite alternate ease-in-out; }
-.hero-background::after { width: 500px; height: 500px; background-color: var(--color-soft-secondary); bottom: -200px; right: -200px; animation: move-blob-2 18s infinite alternate ease-in-out; animation-delay: -5s; }
-@keyframes move-blob-1 { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(100px, 80px) rotate(180deg); } }
-@keyframes move-blob-2 { from { transform: translate(0, 0) scale(1); } to { transform: translate(-120px, -50px) scale(1.2); } }
+.hero-svg-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+}
 .hero__title { font-size: 3.8rem; margin-bottom: 1rem; }
 .hero__subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; }
 
-/* --- Estilos de Secciones (sin cambios) --- */
+/* (Resto de los estilos sin cambios) */
 .problem__container, .benefits__container, .services__container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 .problem-card { background-color: var(--color-white); border: 1px solid var(--color-secondary); padding: 2.5rem 2rem; border-radius: 10px; text-align: center; }
 .problem-card__title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-accent); }
@@ -123,82 +124,36 @@ img { max-width: 100%; height: auto; display: block; }
 .footer__link { color: var(--color-secondary); margin-bottom: 0.5rem; display: inline-block; transition: color 0.3s; }
 .footer__link:hover { color: var(--color-white); }
 
-/* =========================================== */
-/* --- ESTILOS RESPONSIVOS (CORREGIDOS) --- */
-/* =========================================== */
-
-/* --- Tabletas (hasta 992px) --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 992px) {
     .author__container { flex-direction: column; text-align: center; }
     .section__title--left { text-align: center; }
     .footer__grid { grid-template-columns: 1fr 1fr; }
     .footer__brand { grid-column: span 2; margin-bottom: 2rem; }
-    /* FIX: Apila las columnas de "Diferencia" en tabletas */
     .difference__container { grid-template-columns: 1fr; }
 }
-
-/* --- Móviles Grandes y Tabletas Pequeñas (hasta 768px) --- */
 @media (max-width: 768px) {
-    body { font-size: 16px; }
-    .section { padding: 4rem 1rem; } /* Añadimos padding lateral a las secciones */
-    .section__title { font-size: 2.2rem; }
-    
-    /* --- Ajustes del Navbar --- */
-    /* FIX: Elimina max-width para evitar scroll horizontal */
     .nav__container { max-width: none; }
-    .header { top: 0; padding: 0; border-radius: 0; background-color: rgba(245, 243, 237, 0.85); /* Un poco más opaco */ }
+    .header { top: 0; padding: 0; border-radius: 0; background-color: rgba(245, 243, 237, 0.85); }
     .nav { border-radius: 0; box-shadow: none; border-bottom: 1px solid var(--color-secondary); height: 70px; }
     .nav__menu { align-items: stretch; }
     .nav__list, .nav__button { display: none; }
-    .nav__toggle {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        padding: 10px;
-        z-index: 101; /* Asegura que esté por encima de todo */
-    }
-    .nav__toggle span {
-        width: 22px;
-        height: 2px;
-        background-color: var(--color-headlines);
-        transition: transform 0.3s, opacity 0.3s;
-    }
+    .nav__toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; z-index: 101; }
+    .nav__toggle span { width: 22px; height: 2px; background-color: var(--color-headlines); transition: transform 0.3s, opacity 0.3s; }
     .nav__toggle.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav__toggle.is-active span:nth-child(2) { opacity: 0; }
     .nav__toggle.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    
-    /* --- Menú Desplegable --- */
-    .nav__menu {
-        position: fixed;
-        top: 70px; /* Abajo del header */
-        right: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background-color: var(--color-background);
-        padding: 2rem;
-        transition: right 0.4s ease-in-out;
-        display: block;
-    }
-    .nav__menu.show-menu {
-        right: 0;
-    }
-    .nav__list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        padding-top: 2rem;
-    }
+    .nav__menu { position: fixed; top: 70px; right: -100%; width: 100%; height: calc(100vh - 70px); background-color: var(--color-background); padding: 2rem; transition: right 0.4s ease-in-out; display: block; }
+    .nav__menu.show-menu { right: 0; }
+    .nav__list { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding-top: 2rem; }
     .nav__link { font-size: 1.5rem; }
-
-    /* --- Ajustes de Secciones --- */
     .hero { padding-top: 120px; }
     .hero__title { font-size: 2.5rem; }
     .hero__subtitle { font-size: 1.1rem; }
+    .section { padding: 4rem 1rem; }
+    .section__title { font-size: 2.2rem; }
+    body { font-size: 16px; }
 }
-
-/* --- Móviles Pequeños (hasta 480px) --- */
 @media (max-width: 480px) {
     .footer__grid { grid-template-columns: 1fr; }
     .footer__brand { grid-column: span 1; }
