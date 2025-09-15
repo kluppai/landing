@@ -1,33 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // --- Cargar Partials ---
-    const loadPartial = (selector, url) => {
-        fetch(url)
-            .then(response => response.ok ? response.text() : Promise.reject(response.statusText))
-            .then(html => {
-                const element = document.querySelector(selector);
-                if (element) {
-                    element.innerHTML = html;
-                }
-            })
-            .catch(error => console.error(`Error loading partial from ${url}:`, error));
-    };
-
     const partials = [
         { selector: '#nav-container', url: 'partials/nav.html' },
         { selector: '#hero-container', url: 'partials/hero.html' },
         { selector: '#trust-container', url: 'partials/trust.html' },
+        { selector: '#problema-container', url: 'partials/problema.html' },
         { selector: '#servicios-container', url: 'partials/servicios.html' },
-        { selector: '#beneficios-container', url: 'partials/beneficios.html' },
         { selector: '#metodologia-container', url: 'partials/metodologia.html' },
         { selector: '#casos-container', url: 'partials/casos.html' },
+        { selector: '#autor-container', url: 'partials/autor.html' },
         { selector: '#cta-container', url: 'partials/cta.html' },
         { selector: '#faq-container', url: 'partials/faq.html' },
         { selector: '#footer-container', url: 'partials/footer.html' }
     ];
 
-    // Load all partials and then initialize event listeners
-    Promise.all(partials.map(p => fetch(p.url)
+    // Función para cargar todos los parciales y luego inicializar los scripts
+    Promise.all(partials.map(p => 
+        fetch(p.url)
         .then(res => res.ok ? res.text() : Promise.reject(res.statusText))
         .then(html => ({ selector: p.selector, html: html }))))
         .then(results => {
@@ -37,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     element.innerHTML = result.html;
                 }
             });
-            // All partials are loaded, now initialize functionalities
+            // Una vez cargado todo el HTML, inicializamos las funciones
             initializeNav();
             initializeFaq();
         })
@@ -56,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
-        // Close menu when a link is clicked
+        // Cerrar menú al hacer clic en un enlace
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (navMenu.classList.contains('show-menu')) {
@@ -75,10 +65,12 @@ document.addEventListener("DOMContentLoaded", function() {
             question.addEventListener('click', () => {
                 const openItem = document.querySelector('.faq__item.active');
 
+                // Cierra el item que ya está abierto (si no es el actual)
                 if (openItem && openItem !== item) {
                     openItem.classList.remove('active');
                 }
 
+                // Abre o cierra el item actual
                 item.classList.toggle('active');
             });
         });
