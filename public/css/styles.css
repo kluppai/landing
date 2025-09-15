@@ -30,7 +30,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- REUSABLE CLASSES --- */
 .container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
-.section { padding: 6rem 0; }
+.section { padding: 6rem 0; position: relative; /* Añadido para contextos de stacking */ }
 .section--secondary { background-color: var(--color-secondary); }
 .section-header { margin-bottom: 4rem; }
 .section__title { font-size: 2.8rem; text-align: center; margin-bottom: 1rem; }
@@ -55,20 +55,12 @@ img { max-width: 100%; height: auto; display: block; }
 .nav__toggle { display: none; }
 
 /* --- HERO CON FONDO ANIMADO --- */
-.hero { 
-    padding-top: 160px; 
-    padding-bottom: 5rem; 
-    text-align: center;
-    position: relative; /* Necesario para el fondo */
-    overflow: hidden; /* Necesario para el fondo */
-}
+.hero { padding-top: 160px; padding-bottom: 5rem; text-align: center; overflow: hidden; }
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
+    top: 0; left: 0;
+    width: 200%; height: 200%;
     background: radial-gradient(circle at 20% 30%, var(--color-secondary), transparent 40%),
                 radial-gradient(circle at 80% 70%, #ffc3a0, transparent 40%);
     z-index: -1;
@@ -82,54 +74,31 @@ img { max-width: 100%; height: auto; display: block; }
 .hero__title { font-size: 3.8rem; margin-bottom: 1rem; }
 .hero__subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; }
 
-/* (El resto de los estilos permanecen igual hasta la sección de Proceso) */
-/* ... */
+/* --- Problema --- */
+.problem__container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: center; }
+.problem-card { background-color: var(--color-white); border: 1px solid var(--color-secondary); padding: 2.5rem 2rem; border-radius: 10px; }
+.problem-card__title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-accent); }
+
+/* --- Beneficios (Resultados) --- */
+.benefits__container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.card { background-color: var(--color-white); padding: 2.5rem 2rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.card__title { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.benefits__container .card, .services__container .card { text-align: left; }
+
+/* --- FIX: TAMAÑO DE ICONOS --- */
+.card__icon { color: var(--color-accent); margin-bottom: 1rem; }
+.card__icon svg { width: 40px; height: 40px; }
+
+/* --- HOVER sobre las cards --- */
 .card, .problem-card, .difference-card { transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; }
 .card:hover, .problem-card:hover, .difference-card:hover { transform: translateY(-6px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
-/* ... */
 
-/* --- MEJORA DE LAYOUT EN PROCESO --- */
-.method__container { 
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: 0; /* Eliminamos el gap para que la línea conecte */
-    max-width: 700px; 
-    margin: 0 auto;
-    position: relative;
-}
-.method__step { 
-    display: flex; 
-    align-items: flex-start; 
-    gap: 2rem;
-    text-align: left; 
-    position: relative;
-    padding-bottom: 2.5rem; /* Espacio para la línea */
-}
-/* Línea conectora */
-.method__step:not(:last-child)::before {
-    content: '';
-    position: absolute;
-    left: 24px; /* Centrado con el círculo (50px / 2 - 1px) */
-    top: 50px; /* Empieza al final del círculo */
-    width: 2px;
-    height: 100%;
-    background-color: var(--color-secondary);
-}
-.method__number { 
-    flex-shrink: 0; 
-    width: 50px; 
-    height: 50px; 
-    background-color: var(--color-accent); 
-    color: var(--color-white); 
-    border-radius: 50%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    font-size: 1.5rem; 
-    font-weight: 600;
-    z-index: 1; /* Para que esté sobre la línea */
-}
-.method__title { font-size: 1.5rem; margin-bottom: 0.5rem; }
+/* --- Servicios (La Solución) --- */
+.services__container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 
-/* (El resto de los estilos permanecen igual) */
-/* ... */
+/* --- Diferencia --- */
+.difference__container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 900px; margin: 0 auto; }
+.difference-card { background-color: var(--color-white); padding: 2.5rem; border-radius: 10px; }
+.difference-card--secondary { background-color: var(--color-headlines); color: var(--color-white); }
+.difference-card--secondary .difference-card__title { color: var(--color-white); }
+.difference-
